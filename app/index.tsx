@@ -1,27 +1,63 @@
 import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity, Dimensions } from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'expo-router';
 import { ShowSearchResult } from './types';
 
 const { width } = Dimensions.get('window');
 
-export default function HomeScreen() {
-  const [movies, setMovies] = useState<ShowSearchResult[]>([]);
-
-  useEffect(() => {
-    fetchMovies();
-  }, []);
-
-  const fetchMovies = async () => {
-    try {
-      const response = await fetch('https://api.tvmaze.com/search/shows?q=all');
-      const data: ShowSearchResult[] = await response.json();
-      setMovies(data);
-    } catch (error) {
-      console.error(error);
+// Mock data for UI development
+const mockMovies: ShowSearchResult[] = [
+  {
+    score: 9.5,
+    show: {
+      id: 1,
+      name: 'Breaking Bad',
+      summary: 'A high school chemistry teacher diagnosed with inoperable lung cancer turns to manufacturing and selling methamphetamine in order to secure his family\'s future.',
+      image: { 
+        medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/0/2400.jpg',
+        original: 'https://static.tvmaze.com/uploads/images/original_untouched/0/2400.jpg'
+      }
     }
-  };
+  },
+  {
+    score: 9.3,
+    show: {
+      id: 2,
+      name: 'Game of Thrones',
+      summary: 'Nine noble families fight for control over the lands of Westeros, while an ancient enemy returns after being dormant for millennia.',
+      image: { 
+        medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/190/476117.jpg',
+        original: 'https://static.tvmaze.com/uploads/images/original_untouched/190/476117.jpg'
+      }
+    }
+  },
+  {
+    score: 8.7,
+    show: {
+      id: 3,
+      name: 'Stranger Things',
+      summary: 'When a young boy disappears, his mother, a police chief, and his friends must confront terrifying supernatural forces in order to get him back.',
+      image: { 
+        medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/482/1205622.jpg',
+        original: 'https://static.tvmaze.com/uploads/images/original_untouched/482/1205622.jpg'
+      }
+    }
+  },
+  {
+    score: 8.9,
+    show: {
+      id: 4,
+      name: 'The Office',
+      summary: 'A mockumentary on a group of typical office workers, where the workday consists of ego clashes, inappropriate behavior, and tedium.',
+      image: { 
+        medium: 'https://static.tvmaze.com/uploads/images/medium_portrait/85/213184.jpg',
+        original: 'https://static.tvmaze.com/uploads/images/original_untouched/85/213184.jpg'
+      }
+    }
+  }
+];
 
+export default function HomeScreen() {
   const renderItem = ({ item }: { item: ShowSearchResult }) => (
     <Link href={{
       pathname: "/details",
@@ -49,7 +85,7 @@ export default function HomeScreen() {
         </TouchableOpacity>
       </Link>
       <FlatList
-        data={movies}
+        data={mockMovies}
         renderItem={renderItem}
         keyExtractor={(item) => item.show.id.toString()}
         numColumns={2}
