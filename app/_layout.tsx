@@ -1,12 +1,15 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { Text, StatusBar, View, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from './index';
 import SearchScreen from './search';
+import DetailsScreen from './details';
 import SplashScreen from './splash';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const CustomHeader = () => (
   <View style={styles.header}>
@@ -15,19 +18,7 @@ const CustomHeader = () => (
   </View>
 );
 
-export default function AppLayout() {
-  const [isLoading, setIsLoading] = React.useState(true);
-
-  React.useEffect(() => {
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 3000);
-  }, []);
-
-  if (isLoading) {
-    return <SplashScreen />;
-  }
-
+function TabNavigator() {
   return (
     <Tab.Navigator
       screenOptions={{
@@ -83,6 +74,41 @@ export default function AppLayout() {
         }}
       />
     </Tab.Navigator>
+  );
+}
+
+export default function AppLayout() {
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+  }, []);
+
+  if (isLoading) {
+    return <SplashScreen />;
+  }
+
+  return (
+    <Stack.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}
+    >
+      <Stack.Screen name="TabNavigator" component={TabNavigator} />
+      <Stack.Screen 
+        name="Details" 
+        component={DetailsScreen}
+        options={{
+          headerShown: true,
+          headerTransparent: true,
+          headerTitle: '',
+          headerTintColor: '#fff',
+          headerBackTitleVisible: false,
+        }}
+      />
+    </Stack.Navigator>
   );
 }
 

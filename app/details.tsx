@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import React from 'react';
+import { View, Text, StyleSheet, Image, ScrollView } from 'react-native';
 import { useLocalSearchParams } from 'expo-router';
-import { Show } from './types';
+import { Show } from './types/api';
 
 export default function DetailsScreen() {
   const { show } = useLocalSearchParams();
@@ -41,11 +41,11 @@ export default function DetailsScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#000',
+    backgroundColor: '#141414',
   },
   heroImage: {
     width: '100%',
-    height: 250,
+    height: 300,
     resizeMode: 'cover',
   },
   content: {
@@ -53,12 +53,12 @@ const styles = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    fontSize: 28,
+    fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
   },
   rating: {
-    color: '#fff',
+    color: '#E50914',
     fontSize: 16,
     marginBottom: 10,
   },
@@ -69,7 +69,7 @@ const styles = StyleSheet.create({
   },
   genre: {
     color: '#fff',
-    backgroundColor: '#e50914',
+    backgroundColor: '#E50914',
     paddingHorizontal: 8,
     paddingVertical: 4,
     borderRadius: 4,
@@ -85,7 +85,8 @@ const styles = StyleSheet.create({
   },
   schedule: {
     color: '#fff',
-    fontSize: 16,
+    fontSize: 14,
     fontStyle: 'italic',
   },
 });
+

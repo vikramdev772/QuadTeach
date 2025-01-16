@@ -110,6 +110,7 @@ export default function HomeScreen() {
         >
           <Ionicons name="search" size={20} color="rgba(255, 255, 255, 0.7)" />
           <Text style={styles.searchText}>Search Movies & TV Shows</Text>
+          <Ionicons name="arrow-forward" size={20} color="rgba(255, 255, 255, 0.7)" />
         </TouchableOpacity>
       </Link>
       <FlatList
@@ -176,12 +177,13 @@ const styles = StyleSheet.create({
     marginHorizontal: 6,
     flexDirection: 'row',
     alignItems: 'center',
-    gap: 10,
+    justifyContent: 'space-between',
   },
   searchText: {
     color: 'rgba(255, 255, 255, 0.7)',
     fontSize: 16,
     flex: 1,
+    marginLeft: 10,
   },
   movieList: {
     padding: 6,
