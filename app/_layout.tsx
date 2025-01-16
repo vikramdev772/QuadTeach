@@ -4,7 +4,7 @@ import React from 'react';
 import { Text, StatusBar, View, StyleSheet, Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import HomeScreen from './index';
-import SearchScreen from './search';
+import SearchScreen from './screens/search';
 import DetailsScreen from './details';
 import SplashScreen from './splash';
 
